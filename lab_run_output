@@ -1,0 +1,275 @@
+Documents/SEM_2/AMR/AMR_assignment_3$ /home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/bin/python /home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/tello_control.py
+[INFO] tello.py - 129 - Tello instance was initialized. Host: '192.168.10.110'. Port: '8889'.
+[INFO] tello.py - 438 - Send command: 'command'
+[WARNING] tello.py - 448 - Aborting command 'command'. Did not receive a response after 7 seconds
+[INFO] tello.py - 438 - Send command: 'command'
+[INFO] tello.py - 462 - Response command: 'ok'
+[INFO] tello.py - 438 - Send command: 'takeoff'
+[INFO] tello.py - 462 - Response takeoff: 'ok'
+[INFO] tello.py - 438 - Send command: 'forward 100'
+[INFO] tello.py - 462 - Response forward 100: 'ok'
+[INFO] tello.py - 438 - Send command: 'right 100'
+[INFO] tello.py - 462 - Response right 100: 'ok'
+[INFO] tello.py - 438 - Send command: 'backwards 100'
+[INFO] tello.py - 462 - Response backwards 100: 'unknown command: backwards'
+[INFO] tello.py - 438 - Send command: 'backwards 100'
+[INFO] tello.py - 462 - Response backwards 100: 'unknown command: backwards'
+[INFO] tello.py - 438 - Send command: 'backwards 100'
+[INFO] tello.py - 462 - Response backwards 100: 'unknown command: backwards'
+Traceback (most recent call last):
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/tello_control.py", line 32, in <module>
+    main()
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/tello_control.py", line 15, in main
+    drone.move("backwards", 100)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/enforce_types.py", line 54, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/tello.py", line 621, in move
+    self.send_control_command("{} {}".format(direction, x))
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/enforce_types.py", line 54, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/tello.py", line 487, in send_control_command
+    self.raise_result_error(command, response)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/enforce_types.py", line 54, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/tello.py", line 529, in raise_result_error
+    raise TelloException("Command '{}' was unsuccessful for {} tries. Latest response:\t'{}'"
+djitellopy.tello.TelloException: Command 'backwards 100' was unsuccessful for 4 tries. Latest response: 'unknown command: backwards'
+[INFO] tello.py - 438 - Send command: 'land'
+[WARNING] tello.py - 448 - Aborting command 'land'. Did not receive a response after 7 seconds
+[INFO] tello.py - 438 - Send command: 'land'
+[WARNING] tello.py - 448 - Aborting command 'land'. Did not receive a response after 7 seconds
+[INFO] tello.py - 438 - Send command: 'land'
+[WARNING] tello.py - 448 - Aborting command 'land'. Did not receive a response after 7 seconds
+(.venv) mscrobotics2425laptop24@e-10lux4295w2j:~/Documents/SEM_2/AMR/AMR_assignment_3$ /home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/bin/python /home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/tello_control.py
+[INFO] tello.py - 129 - Tello instance was initialized. Host: '192.168.10.110'. Port: '8889'.
+[INFO] tello.py - 438 - Send command: 'command'
+[INFO] tello.py - 462 - Response command: 'ok'
+[INFO] tello.py - 438 - Send command: 'takeoff'
+[INFO] tello.py - 462 - Response takeoff: 'ok'
+[INFO] tello.py - 438 - Send command: 'forward 100'
+[INFO] tello.py - 462 - Response forward 100: 'ok'
+[INFO] tello.py - 438 - Send command: 'right 100'
+[INFO] tello.py - 462 - Response right 100: 'ok'
+[INFO] tello.py - 438 - Send command: 'back 100'
+[INFO] tello.py - 462 - Response back 100: 'ok'
+[INFO] tello.py - 438 - Send command: 'left 100'
+[INFO] tello.py - 462 - Response left 100: 'ok'
+[INFO] tello.py - 438 - Send command: 'land'
+[INFO] tello.py - 462 - Response land: 'ok'
+[INFO] tello.py - 438 - Send command: 'land'
+Traceback (most recent call last):
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/tello_control.py", line 32, in <module>
+    main()
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/tello_control.py", line 28, in main
+    drone.land()
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/enforce_types.py", line 54, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/tello.py", line 581, in land
+    self.send_control_command("land")
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/enforce_types.py", line 54, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/tello.py", line 480, in send_control_command
+    response = self.send_command_with_return(command, timeout=timeout)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/enforce_types.py", line 54, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/tello.py", line 443, in send_command_with_return
+    responses = self.get_own_udp_object()['responses']
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/enforce_types.py", line 54, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/tello.py", line 148, in get_own_udp_object
+    return drones[host]
+KeyError: '192.168.10.110'
+(.venv) mscrobotics2425laptop24@e-10lux4295w2j:~/Documents/SEM_2/AMR/AMR_assignment_3$ /home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/bin/python /home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/tello_control.py
+[INFO] tello.py - 129 - Tello instance was initialized. Host: '192.168.10.110'. Port: '8889'.
+[INFO] tello.py - 438 - Send command: 'command'
+[INFO] tello.py - 462 - Response command: 'ok'
+[INFO] tello.py - 438 - Send command: 'takeoff'
+[INFO] tello.py - 462 - Response takeoff: 'ok'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 25 0 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 25 0 0 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 -25 0 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc -25 0 0 0'
+[INFO] tello.py - 438 - Send command: 'land'
+[INFO] tello.py - 462 - Response land: 'ok'
+[INFO] tello.py - 438 - Send command: 'land'
+Traceback (most recent call last):
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/tello_control.py", line 41, in <module>
+    main()
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/tello_control.py", line 37, in main
+    drone.land()
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/enforce_types.py", line 54, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/tello.py", line 581, in land
+    self.send_control_command("land")
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/enforce_types.py", line 54, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/tello.py", line 480, in send_control_command
+    response = self.send_command_with_return(command, timeout=timeout)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/enforce_types.py", line 54, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/tello.py", line 443, in send_command_with_return
+    responses = self.get_own_udp_object()['responses']
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/enforce_types.py", line 54, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/tello.py", line 148, in get_own_udp_object
+    return drones[host]
+KeyError: '192.168.10.110'
+(.venv) mscrobotics2425laptop24@e-10lux4295w2j:~/Documents/SEM_2/AMR/AMR_assignment_3$ /home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/bin/python /home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/tello_control.py
+[INFO] tello.py - 129 - Tello instance was initialized. Host: '192.168.10.110'. Port: '8889'.
+[INFO] tello.py - 438 - Send command: 'command'
+[INFO] tello.py - 462 - Response command: 'ok'
+[INFO] tello.py - 438 - Send command: 'takeoff'
+[INFO] tello.py - 462 - Response takeoff: 'ok'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 50 0 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 50 0 0 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 -50 0 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc -50 0 0 0'
+[INFO] tello.py - 438 - Send command: 'land'
+[INFO] tello.py - 462 - Response land: 'ok'
+[INFO] tello.py - 438 - Send command: 'land'
+Traceback (most recent call last):
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/tello_control.py", line 41, in <module>
+    main()
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/tello_control.py", line 37, in main
+    drone.land()
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/enforce_types.py", line 54, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/tello.py", line 581, in land
+    self.send_control_command("land")
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/enforce_types.py", line 54, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/tello.py", line 480, in send_control_command
+    response = self.send_command_with_return(command, timeout=timeout)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/enforce_types.py", line 54, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/tello.py", line 443, in send_command_with_return
+    responses = self.get_own_udp_object()['responses']
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/enforce_types.py", line 54, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/tello.py", line 148, in get_own_udp_object
+    return drones[host]
+KeyError: '192.168.10.110'
+(.venv) mscrobotics2425laptop24@e-10lux4295w2j:~/Documents/SEM_2/AMR/AMR_assignment_3$ /home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/bin/python /home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/tello_control.py
+[INFO] tello.py - 129 - Tello instance was initialized. Host: '192.168.10.110'. Port: '8889'.
+[INFO] tello.py - 438 - Send command: 'command'
+[INFO] tello.py - 462 - Response command: 'ok'
+[INFO] tello.py - 438 - Send command: 'takeoff'
+[INFO] tello.py - 462 - Response takeoff: 'ok'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 50 0 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 50 0 0 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 -50 0 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc -50 0 0 0'
+[INFO] tello.py - 471 - Send command (no response expected): 'rc 0 0 0 0'
+[INFO] tello.py - 438 - Send command: 'land'
+[INFO] tello.py - 462 - Response land: 'ok'
+[INFO] tello.py - 438 - Send command: 'land'
+Traceback (most recent call last):
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/tello_control.py", line 49, in <module>
+    main()
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/tello_control.py", line 45, in main
+    drone.land()
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/enforce_types.py", line 54, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/tello.py", line 581, in land
+    self.send_control_command("land")
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/enforce_types.py", line 54, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/tello.py", line 480, in send_control_command
+    response = self.send_command_with_return(command, timeout=timeout)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/enforce_types.py", line 54, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/tello.py", line 443, in send_command_with_return
+    responses = self.get_own_udp_object()['responses']
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/enforce_types.py", line 54, in wrapper
+    return func(*args, **kwargs)
+  File "/home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/lib/python3.10/site-packages/djitellopy/tello.py", line 148, in get_own_udp_object
+    return drones[host]
+KeyError: '192.168.10.110'
+(.venv) mscrobotics2425laptop24@e-10lux4295w2j:~/Documents/SEM_2/AMR/AMR_assignment_3$ /home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/bin/python /home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/run.py
+pybullet build time: Jan 29 2025 23:16:28
+startThreads creating 1 threads.
+starting thread 0
+started thread 0 
+argc=2
+argv[0] = --unused
+argv[1] = --start_demo_name=Physics Server
+ExampleBrowserThreadFunc started
+X11 functions dynamically loaded using dlopen/dlsym OK!
+X11 functions dynamically loaded using dlopen/dlsym OK!
+Creating context
+Created GL 3.3 context
+Direct GLX rendering context obtained
+Making context current
+GL_VENDOR=Mesa
+GL_RENDERER=llvmpipe (LLVM 15.0.7, 256 bits)
+GL_VERSION=4.5 (Core Profile) Mesa 23.2.1-1ubuntu3.1~22.04.3
+GL_SHADING_LANGUAGE_VERSION=4.50
+pthread_getconcurrency()=0
+Version = 4.5 (Core Profile) Mesa 23.2.1-1ubuntu3.1~22.04.3
+Vendor = Mesa
+Renderer = llvmpipe (LLVM 15.0.7, 256 bits)
+b3Printf: Selected demo: Physics Server
+startThreads creating 1 threads.
+starting thread 0
+started thread 0 
+MotionThreadFunc thread started
+ven = Mesa
+ven = Mesa
+INFO: Target set to: (2.0, 2.0, 2.0, 0.0)
+INFO: Target set to: (-2.0, 2.0, 2.0, 1.57)
+INFO: Target set to: (2.0, 2.0, 2.0, 0.0)
+INFO: Target set to: (2.0, 2.0, 2.0, 0.0)
+INFO: Vehicle reset by keyboard key 'r'.
+INFO: Target set to: (2.0, 2.0, 2.0, 0.0)
+INFO: Vehicle reset by keyboard key 'r'.
+INFO: Target set to: (2.0, 2.0, 2.0, 0.0)
+INFO: Vehicle reset by keyboard key 'r'.
+INFO: Target set to: (-2.0, 2.0, 2.0, 1.57)
+INFO: Target set to: (2.0, 2.0, 2.0, 0.0)
+INFO: Target set to: (-2.0, 2.0, 2.0, 1.57)
+INFO: Target set to: (-2.0, -2.0, 2.0, 3.14)
+INFO: Target set to: (2.0, -2.0, 2.0, 4.71)
+INFO: Target set to: (2.0, 2.0, 2.0, 0.0)
+X connection to :0 broken (explicit kill or server shutdown).
+Segmentation fault (core dumped)
+(.venv) mscrobotics2425laptop24@e-10lux4295w2j:~/Documents/SEM_2/AMR/AMR_assignment_3$ /home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/.venv/bin/python /home/mscrobotics2425laptop24/Documents/SEM_2/AMR/AMR_assignment_3/run.py
+pybullet build time: Jan 29 2025 23:16:28
+startThreads creating 1 threads.
+starting thread 0
+started thread 0 
+argc=2
+argv[0] = --unused
+argv[1] = --start_demo_name=Physics Server
+ExampleBrowserThreadFunc started
+X11 functions dynamically loaded using dlopen/dlsym OK!
+X11 functions dynamically loaded using dlopen/dlsym OK!
+Creating context
+Created GL 3.3 context
+Direct GLX rendering context obtained
+Making context current
+GL_VENDOR=Mesa
+GL_RENDERER=llvmpipe (LLVM 15.0.7, 256 bits)
+GL_VERSION=4.5 (Core Profile) Mesa 23.2.1-1ubuntu3.1~22.04.3
+GL_SHADING_LANGUAGE_VERSION=4.50
+pthread_getconcurrency()=0
+Version = 4.5 (Core Profile) Mesa 23.2.1-1ubuntu3.1~22.04.3
+Vendor = Mesa
+Renderer = llvmpipe (LLVM 15.0.7, 256 bits)
+b3Printf: Selected demo: Physics Server
+startThreads creating 1 threads.
+starting thread 0
+started thread 0 
+MotionThreadFunc thread started
+ven = Mesa
+ven = Mesa
+INFO: Target set to: (2.0, 2.0, 2.0, 0.0)
+INFO: Target set to: (-2.0, 2.0, 2.0, 1.57)
+INFO: Target set to: (-2.0, -2.0, 2.0, 3.14)
+INFO: Target set to: (2.0, -2.0, 2.0, 4.71)
+INFO: Target set to: (2.0, 2.0, 2.0, 0.0)
+X connection to :0 broken (explicit kill or server shutdown).
+Segmentation fault (core dumped)
+(.venv) mscrobotics2425laptop24@e-10lux4295w2j:~/Documents/SEM_2/AMR/AMR_assignment_3$ 

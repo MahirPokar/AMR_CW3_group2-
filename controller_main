@@ -1,0 +1,157 @@
+# controller.py
+
+import numpy as np
+from src.tello_controller import TelloController
+
+# =============================
+# PID CLASS DEFINITION
+# =============================
+class PID:
+    """
+    A simple PID controller with optional integrator windup limit.
+    Attributes:
+      kp, ki, kd            - Proportional, Integral, Derivative gains
+      integrator            - Accumulated integral of error
+      prev_error            - Last error value (for derivative calculation)
+      integrator_limit      - Maximum absolute value for integrator (anti-windup)
+    """
+    def __init__(self, kp, ki, kd, integrator_limit=None):
+        self.kp = kp
+        self.ki = ki
+        self.kd = kd
+        self.integrator = 0.0
+        self.prev_error = 0.0
+        self.integrator_limit = integrator_limit
+
+    def update(self, error, dt):
+        """
+        Compute PID output given the current error and timestep.
+        Steps:
+          1. Integrate the error: integrator += error * dt
+             - Clamp integrator to ±integrator_limit if provided.
+          2. Compute derivative: (error - prev_error) / dt
+          3. Compute output: kp*error + ki*integrator + kd*derivative
+          4. Store prev_error = error for next call.
+        Args:
+          error (float): Current error signal.
+          dt    (float): Time interval since last update (s).
+        Returns:
+          out (float): PID control output.
+        """
+        # Integral term with windup guard
+        self.integrator += error * dt
+        if self.integrator_limit is not None:
+            self.integrator = np.clip(
+                self.integrator,
+                -self.integrator_limit,
+                self.integrator_limit
+            )
+
+        # Derivative term
+        derivative = (error - self.prev_error) / dt if dt > 0 else 0.0
+
+        # PID formula
+        out = (self.kp * error +
+               self.ki * self.integrator +
+               self.kd * derivative)
+
+        # Save error for next derivative calculation
+        self.prev_error = error
+
+        return out
+
+# =============================
+# HELPER FUNCTION
+# =============================
+def wrap_angle(a):
+    """
+    Wrap an angle into the interval [-π, +π].
+    Args:
+      a (float): Angle in radians (unbounded).
+    Returns:
+      (float): Equivalent angle within [-π, π].
+    """
+    return (a + np.pi) % (2 * np.pi) - np.pi
+
+# =============================
+# TUNED GAINS FOR OUTER LOOPS
+# =============================
+# These values were determined via step-response tuning:
+#   - Kp = 0.055 for X, Y, Z position loops → ~10 s rise time
+#   - Pure-P control gave <5% overshoot and zero steady error
+#   - Yaw loop uses a faster gain for angular steps
+pid_x   = PID(kp=0.055, ki=0.0, kd=0.0, integrator_limit=1.0)
+pid_y   = PID(kp=0.055, ki=0.0, kd=0.0, integrator_limit=1.0)
+pid_z   = PID(kp=0.055, ki=0.0, kd=0.0, integrator_limit=1.0)
+pid_yaw = PID(kp=0.5,   ki=0.0, kd=0.0)
+
+# =============================
+# INNER CASCADED CONTROLLER
+# =============================
+# This handles velocity → attitude → rate → motor mixing internally
+_tello_ctrl = TelloController(
+    g=9.81,        # gravity (m/s^2)
+    mass=0.088,    # UAV mass (kg)
+    L=0.06,        # arm length (m)
+    max_angle=0.35,# max tilt angle (rad)
+    KF=0.566e-5,   # thrust constant
+    KM=0.762e-7    # reaction torque constant
+)
+
+# =============================
+# MAIN CONTROLLER ENTRYPOINT
+# =============================
+def controller(state, target_pos, dt):
+    """
+    The top‐level cascaded PID controller.
+    Stages:
+      1) Outer position loop (X, Y, Z) → velocity setpoints
+      2) Yaw loop → yaw‐rate setpoint
+      3) Inner cascaded control (handled by TelloController) →
+         motor RPM commands
+
+    Args:
+      state      (array-like): [x, y, z, roll, pitch, yaw]
+      target_pos (tuple):       (tx, ty, tz, tyaw)
+      dt         (float):       position‐loop timestep (s)
+    Returns:
+      (vx_sp, vy_sp, vz_sp, yaw_rate_sp):
+         desired velocities (m/s) and yaw‐rate (rad/s)
+    """
+    # Unpack vehicle state
+    x, y, z, roll, pitch, yaw = state
+    tx, ty, tz, tyaw         = target_pos
+
+    # ------------------------------------
+    # 1) Position‐loop: compute errors
+    #    Rotate world‐frame error into body‐frame:
+    #      ex =  cos(yaw)*(tx-x) + sin(yaw)*(ty-y)
+    #      ey = -sin(yaw)*(tx-x) + cos(yaw)*(ty-y)
+    #    ez =     tz - z  (vertical is same in both frames)
+    # ------------------------------------
+    ex_w = tx - x
+    ey_w = ty - y
+    ez   = tz - z
+
+    c = np.cos(yaw)
+    s = np.sin(yaw)
+    ex =  c * ex_w + s * ey_w
+    ey = -s * ex_w + c * ey_w
+
+    # PID → velocity setpoints (outer loops)
+    vx_sp = pid_x.update(ex, dt)
+    vy_sp = pid_y.update(ey, dt)
+    vz_sp = pid_z.update(ez, dt)
+
+    # ------------------------------------
+    # 2) Yaw‐loop: compute yaw error and PID
+    # ------------------------------------
+    yaw_err     = wrap_angle(tyaw - yaw)
+    yaw_rate_sp = pid_yaw.update(yaw_err, dt)
+
+    # ------------------------------------
+    # 3) Return outer setpoints; inner cascades
+    #    in TelloController will handle:
+    #      velocity→attitude→body‐rate→motor RPMs
+    # ------------------------------------
+    return (vx_sp, vy_sp, vz_sp, yaw_rate_sp)
